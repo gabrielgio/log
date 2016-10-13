@@ -13,6 +13,9 @@ class LogItemViewModel:
         
 
 def index(request):
+    return render(request, 'index.html')
+
+def index_log(request):
     log_item = LogItem.objects.get(id=3)
     html = markdown2.markdown(log_item.md.read())
     log_item_view = LogItemViewModel(html, log_item.title)
