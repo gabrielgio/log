@@ -55,8 +55,7 @@ STATICFILES_FINDERS = (
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
 
 BOWER_INSTALLED_APPS = (
-    'bootstrap',
-    'jquery',
+    'bootstrap'
 )
 
 TEMPLATE_LOADERS = (
