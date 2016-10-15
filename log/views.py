@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from models import LogItem
+from log.models import LogItem
 import markdown2
 
 class LogItemViewModel:
