@@ -13,10 +13,12 @@ class LogItemViewModel:
         
 
 def index(request):
-    return render(request, 'index.html')
+    log_items = LogItem.objects.order_by('update')[:5]
+    log_items_view = []
 
-def index_log(request):
-    log_item = LogItem.objects.get(id=3)
-    html = markdown2.markdown(log_item.md.read())
-    log_item_view = LogItemViewModel(html, log_item.title)
-    return render(request, 'index.html', {'i': log_item_view})
+    for item in log_items:
+        html = markdown2.markdown(item.md.read(), extras=['tables'])
+        item_view = LogItemViewModel(html, item.title)
+        log_items_view.append(item_view)
+
+    return render(request, 'index.html', {'items' : log_items_view})

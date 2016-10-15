@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"  href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <title>Log</title>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Log</a>
+        </div>
+      </div>
+    </nav>
+    <div class="panel-body">
+        {% block body %}
+        {%  endblock %}
+    </div>
+</body>
+</html>
