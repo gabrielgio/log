@@ -8,5 +8,5 @@ from datetime import datetime
 class LogItem(models.Model):
 
     title = models.CharField(max_length=255, null=False)
-    md = models.FileField(null=False, upload_to='files/')
+    md = models.TextField(null=False, max_length=50000)
     update = models.DateTimeField(null=False, default=datetime.now)

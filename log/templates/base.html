@@ -5,19 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"  href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    {% block css %}
+    {% endblock %}
     <title>Log</title>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Log</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Log</a>
         </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'add' %}">Add</a></li>
+          </ul>
       </div>
     </nav>
     <div class="panel-body">
         {% block body %}
         {%  endblock %}
     </div>
+    {% block js %}
+    {% endblock %}
 </body>
 </html>

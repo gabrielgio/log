@@ -56,7 +56,9 @@ BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
 
 BOWER_INSTALLED_APPS = (
     'bootstrap',
-    'jquery'
+    'jquery',
+    'simplemde',
+    'highlightjs'
 )
 
 TEMPLATE_LOADERS = (
