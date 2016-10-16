@@ -15,7 +15,7 @@ class LogItemViewModel:
         
 
 def index(request):
-    log_items = LogItem.objects.order_by('update')[:5]
+    log_items = LogItem.objects.order_by('-update')[:5]
     log_items_view = []
 
     for item in log_items:
