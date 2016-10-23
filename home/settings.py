@@ -59,7 +59,8 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'simplemde',
     'highlightjs',
-    'codemirror'
+    'codemirror',
+    'font-awesome'
 )
 
 TEMPLATE_LOADERS = (
