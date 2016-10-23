@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from log.models import LogItem
-from django.core.files.base import ContentFile
 import markdown2
-import pickle
+from log.forms import UserRegister
+from django.contrib.auth.models import User
 
 class LogItemViewModel:
     
@@ -25,14 +25,38 @@ def index(request):
 
     return render(request, 'index.html', {'items' : log_items_view})
 
+
 def create(request):
     if request.method == 'POST':
         return _post_create(request)
     else:
         return _get_create(request)
 
+
+def signup(request):
+    if request.method == 'POST':
+        return _post_signup(request)
+    else:
+        return _get_signup(request)
+
+
+def _get_signup(request):
+    return render(request, 'signup.html')
+
+
+def _post_signup(request):
+    form = UserRegister(request.POST)
+    if form.is_valid():
+        data = form.data
+        User.objects.create_user(email=data['email'], password=data['password'], username=data['name'])
+        return redirect('index')
+
+    return render(request, 'signup.html', {'form': form})
+
+
 def _get_create(request):
     return render(request, 'create.html')
+
 
 def _post_create(request):
     title = request.POST.get('title')
