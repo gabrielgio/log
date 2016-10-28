@@ -18,13 +18,13 @@ log-pi: docker-build-pi
 	$(D) $(R) -d -p $(T):8000 $(NP)
 
 docker-build-pi: bcollect
-	sed 's/FROM [a-zA-Z0-9\/]*/FROM clemenshemmerling\/rpi-django/' Dockerfile | $(D) $(U) $(NP) -
+	sed 's/FROM [a-zA-Z0-9\/]*/FROM clemenshemmerling\/rpi-django/' Dockerfile | $(D) $(U) -t $(NP) -
 
 docker-build: bcollect
-	$(D) $(U) $(N) $(F)
+	$(D) $(U) -t $(N) $(F)
 
 bcollect: binstall
-	$(P) $(M) $(C) --no-input
+	$(P) $(M) $(C) --noinput
 
 binstall:
 	$(P) $(M) $(B) $(I)
