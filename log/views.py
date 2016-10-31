@@ -6,12 +6,14 @@ from log.models import LogItem
 import markdown2
 from log.forms import UserRegister
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 class LogItemViewModel:
     
-    def __init__(self, content, title):
+    def __init__(self, content, title, user):
         self.title = title
         self.content = content
+        self.user = user
         
 
 def index(request):
@@ -20,12 +22,12 @@ def index(request):
 
     for item in log_items:
         html = markdown2.markdown(item.md, extras=['tables'])
-        item_view = LogItemViewModel(html, item.title)
+        item_view = LogItemViewModel(html, item.title, item.user)
         log_items_view.append(item_view)
 
-    return render(request, 'index.html', {'items' : log_items_view})
+    return render(request, 'index.html', {'items': log_items_view, 'user': request.user})
 
-
+@login_required
 def create(request):
     if request.method == 'POST':
         return _post_create(request)
@@ -62,5 +64,6 @@ def _post_create(request):
     title = request.POST.get('title')
     md = request.POST.get('md')
     log = LogItem(title=title, md=md)
+    log.user = request.user;
     log.save()
     return redirect('index')

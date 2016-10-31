@@ -11,6 +11,9 @@
             <div class="panel-body">
                 {{ item.content | safe }}
             </div>
+            <div class="panel-footer">
+                {{ item.user.username }}
+            </div>
         </div>
     </div>
     {% endfor %}

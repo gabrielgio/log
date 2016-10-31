@@ -1,0 +1,18 @@
+{% extends 'base_user.html' %}
+{% block body %}
+    <form class="form-signin" role="form" action="{% url 'signin'  %}" method="post">
+    {% csrf_token %}
+        <h2 class="form-signin-heading">Login</h2>
+        <input type="text" class="form-control" id="id_name" name="username" placeholder="Username" value="{{ form.name }}">
+        <input type="password" class="form-control" id="id_password" name="password" placeholder="Password">
+        <hr/>
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <button type="button" class="close">&times;</button>
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        <p>New to Log? <a href="{% url 'signup' %}">Create an account.</a></p>
+    </form>
+{% endblock %}
