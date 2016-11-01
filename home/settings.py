@@ -43,13 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'log',
-    'djangobower'
+    'djangobower',
+    'compressor'
 ]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder'
+    'djangobower.finders.BowerFinder',
+    'compressor.finders.CompressorFinder'
 )
 
 BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
@@ -157,3 +159,5 @@ LOGOUT_URL = '/lougout'
 LOGIN_REDIRECT_URL = '/'
 
 APPEND_SLASH = False
+
+COMPRESS_ENABLED = True
