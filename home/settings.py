@@ -97,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -148,10 +149,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/dev/howto/static-files/
-
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/signin/'
@@ -161,3 +158,9 @@ LOGIN_REDIRECT_URL = '/'
 APPEND_SLASH = False
 
 COMPRESS_ENABLED = True
+
+GOOGLE_ANALITICS_CODE = ''
+
+SETTINGS_EXPORT = [
+    'GOOGLE_ANALITICS_CODE',
+]

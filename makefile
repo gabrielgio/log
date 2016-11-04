@@ -9,6 +9,8 @@ T=8000
 F=Dockerfile
 U=build
 N=log
+PI=pip
+NP=npm
 
 log: docker-build stop-cont docker-clean
 	$(D) $(R) -d -p $(T):8000 $(N)
@@ -37,3 +39,11 @@ docker-clean:
 ifneq ($(docker images | grep "^<none>" | awk "{print $3}"),)
 	$(D) rmi $(docker images | grep "^<none>" | awk "{print $3}")
 endif
+
+pre:
+	$(PI) $(I) django
+	$(PI) $(I) django_compress
+	$(PI) $(I) django-bower
+	$(PI) $(I) django-settings-export
+	$(PI) $(I) markdown2
+	$(NP) $(I) -g bower
