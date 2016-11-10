@@ -45,5 +45,5 @@ pre:
 	$(PI) $(I) django_compress
 	$(PI) $(I) django-bower
 	$(PI) $(I) django-settings-export
+	$(PI) $(I) pytz
 	$(PI) $(I) markdown2
-	$(NP) $(I) -g bower

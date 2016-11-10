@@ -4,13 +4,7 @@ ADD . /app
 
 WORKDIR /app
 
-RUN ["pip", "install", "markdown2"]
-
-RUN ["pip", "install", "django-bower"]
-
-RUN ["pip", "install", "django-settings-export"]
-
-RUN ["pip", "install", "django_compressor"]
+RUN ["make", "pre"]
 
 CMD ["python" , "manage.py", "migrate"]
 

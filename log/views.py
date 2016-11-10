@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 from log.models import LogItem
 import markdown2
 from log.forms import UserRegister
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+import pytz
 
 class LogItemViewModel:
     
@@ -64,6 +67,7 @@ def _post_create(request):
     title = request.POST.get('title')
     md = request.POST.get('md')
     log = LogItem(title=title, md=md)
-    log.user = request.user;
+    log.update = datetime.utcnow().replace(tzinfo=pytz.utc)
+    log.user = request.user
     log.save()
     return redirect('index')
