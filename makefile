@@ -22,7 +22,7 @@ docker-build-pi: bcollect
 	sed 's/FROM [a-zA-Z0-9\/]*/FROM clemenshemmerling\/rpi-django/' $(F) | $(D) $(U) -t $(N) -
 
 docker-build: bcollect
-	$(D) $(U) -t $(N) $(F)
+	$(D) $(U) -t $(N) .
 
 bcollect: binstall
 	$(P) $(M) $(C) --noinput
@@ -47,3 +47,4 @@ pre:
 	$(PI) $(I) django-settings-export
 	$(PI) $(I) pytz
 	$(PI) $(I) markdown2
+	$(PI) $(I) django_compressor
