@@ -31,8 +31,8 @@ binstall:
 	$(P) $(M) $(B) $(I)
 
 stop-cont:
-ifneq ($(docker stop $(docker ps -a -q --filter ancestor=$(N) --format="{{.ID}}")),)
-	$(D) rm $(docker stop $(docker ps -a -q --filter ancestor=$(N) --format="{{.ID}}"))
+ifneq ($(docker ps -a -q --filter ancestor=$(N) --format="{{.ID}}"),)
+	docker stop $(docker ps -a -q --filter ancestor=$(N) --format="{{.ID}}")
 endif
 
 docker-clean:
