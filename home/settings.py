@@ -78,6 +78,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware'
 ]
 
 TEMPLATE_DIRS = (
@@ -135,6 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+HTML_MINIFY = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

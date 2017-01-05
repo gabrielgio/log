@@ -48,3 +48,4 @@ pre:
 	$(PI) $(I) pytz
 	$(PI) $(I) markdown2
 	$(PI) $(I) django_compressor
+	$(PI) $(I) django-htmlmin
