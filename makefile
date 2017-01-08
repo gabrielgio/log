@@ -12,16 +12,16 @@ N=log
 PI=pip
 NP=npm
 
-log: docker-build stop-cont docker-clean
+log: docker-build
 	$(D) $(R) -d -p $(T):8000 $(N)
 
-log-pi: docker-build-pi stop-cont docker-clean
+log-pi: docker-build-pi docker-clean
 	$(D) $(R) -d -p $(T):8000 $(N)
 
-docker-build-pi: bcollect
+docker-build-pi: bcollect docker-clean
 	sed 's/FROM [a-zA-Z0-9\/]*/FROM clemenshemmerling\/rpi-django/' $(F) | $(D) $(U) -t $(N) -
 
-docker-build: bcollect
+docker-build: bcollect docker-clean
 	$(D) $(U) -t $(N) .
 
 bcollect: binstall
@@ -30,15 +30,12 @@ bcollect: binstall
 binstall:
 	$(P) $(M) $(B) $(I)
 
-stop-cont:
-ifneq ($(docker ps -a -q --filter ancestor=$(N) --format="{{.ID}}"),)
-	docker stop $(docker ps -a -q --filter ancestor=$(N) --format="{{.ID}}")
-endif
+docker-stop:
+	-docker stop $(docker ps -a -q  --filter ancestor=log)
 
-docker-clean:
-ifneq ($(docker images | grep "^<none>" | awk "{print $3}"),)
-	$(D) rmi $(docker images | grep "^<none>" | awk "{print $3}")
-endif
+docker-clean: docker-stop
+	-docker rm `docker ps --no-trunc -aq`
+	-docker images -q | xargs docker rmi -f
 
 pre:
 	$(PI) $(I) django
