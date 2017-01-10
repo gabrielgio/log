@@ -11,18 +11,16 @@ U=build
 N=log
 PI=pip
 NP=npm
+A=apt-get
 
-log: docker-build
-	$(D) $(R) -d -p $(T):8000 $(N)
+all:
+	$(D) $(U) -t $(N) .
 
-log-pi: docker-build-pi docker-clean
-	$(D) $(R) -d -p $(T):8000 $(N)
-
-docker-build-pi: bcollect docker-clean
+pi:
 	sed 's/FROM [a-zA-Z0-9\/]*/FROM clemenshemmerling\/rpi-django/' $(F) | $(D) $(U) -t $(N) -
 
-docker-build: bcollect docker-clean
-	$(D) $(U) -t $(N) .
+run:
+	$(D) $(R) -d -p $(T):8000 $(N)
 
 bcollect: binstall
 	$(P) $(M) $(C) --noinput
@@ -33,11 +31,14 @@ binstall:
 docker-stop:
 	-docker stop $(docker ps -a -q  --filter ancestor=log)
 
-docker-clean: docker-stop
+docker-clean:
 	-docker rm `docker ps --no-trunc -aq`
 	-docker images -q | xargs docker rmi -f
 
 pre:
+	$(A) $(I) npm -y
+	$(A) $(I) nodejs-legacy -y
+	$(NP) $(I) bower
 	$(PI) $(I) django
 	$(PI) $(I) django_compress
 	$(PI) $(I) django-bower
