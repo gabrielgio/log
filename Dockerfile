@@ -28,6 +28,8 @@ RUN ["pip", "install", "django_compressor"]
 
 RUN ["pip", "install", "django-htmlmin"]
 
-RUN ["make" , "bcollect"]
+RUN ["python", "manage.py", "bower", "install"]
+
+RUN ["python", "manage.py", "collectstatic", "--noinput"]
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
