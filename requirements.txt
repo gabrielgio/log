@@ -1,0 +1,8 @@
+django
+django_compress
+django-bower
+django-settings-export
+pytz
+markdown2
+django_compressor
+django-htmlmin
